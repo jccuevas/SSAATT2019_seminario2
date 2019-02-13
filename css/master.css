@@ -1,0 +1,28 @@
+body{
+  text-align: center;
+}
+
+#mainbox{
+  width: 960px;
+  margin: 15px auto;
+  text-align: left;
+}
+
+#cabecera{
+  background: #444444;
+  border: 1px solid #999999;
+  padding: 20px;
+}
+
+#menu{
+  background: #cccccc;
+  padding: 5px 15px;
+
+}
+
+#menu li{
+  display: inline-block;
+  list-style: none;
+  padding: 5px;
+  font: bold 14px verdana, sans-serif;
+}
