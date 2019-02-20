@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ejercicio JavaScript</title>
+  </head>
+  <body>
+    <script src="ejercicio.js" type="text/javascript">
+    </script>
+
+    <script type="text/javascript">
+      function myAlert(message){
+        //window.alert(message);
+        document.getElementById("demo").innerHTML = "My First JavaScript";
+      }
+    </script>
+    <h1>Ejercicios JavaScript</h1>
+
+    <h2>1. Escribe un programa para que aparezca una ventana emergente (alert) con el mensaje: “Saludos, alumnado de segundo”.</h2>
+    <form name="alertform"> Introduce tu nombre:
+      <input type="text" name="yourname" id="name">
+      <input type="button" value= "directo"
+     onClick="window.alert('Saludos, alumnado de segundo: ' + document.getElementById('name').value);">
+
+     </form>
+     <form name="alertform2"> Introduce tu nombre:
+       <input type="text" name="yourname" id="name2">
+
+        <input type="button"
+        value= "fun"
+        onClick="myAlert()">
+      </form>
+     <p id="demo"></p>
+  </body>
+</html>
