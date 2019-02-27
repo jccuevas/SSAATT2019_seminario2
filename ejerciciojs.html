@@ -6,9 +6,6 @@
     <link rel="stylesheet" href="./css/list.css">
   </head>
   <body>
-    <script src="ejercicio.js" type="text/javascript">
-    </script>
-
     <script type="text/javascript">
       function myAlert(message){
 
@@ -172,6 +169,7 @@
       }
       </script>
       <button type="button" name="button2" onclick="cuentaVocales()">Cuenta las vocales en una frase</button><br>
+
       <h2>Escribe un programa que pida un número y nos diga si es divisible por 2, 3, 5 o 7 (sólo hay que comprobar si lo es por uno de los cuatro). A la hora de codificar el programa, utiliza funciones.</h2>
       <p id="ejercicio11">Aquí aparecer&aacute; el resultado</p>
       <script>
@@ -187,6 +185,7 @@
       }
       </script>
       <button type="button" name="button2" onclick="divisible()">Divisible por 2, 3, 5 o 7</button><br>
+
       <h2>Añadir al ejercicio anterior que nos diga por cuál de los cuatro es divisible (hay que decir todos por los que es divisible). A la hora de codificar el programa, utiliza funciones.</h2>
       <p id="ejercicio12">Aquí aparecer&aacute; el resultado</p>
       <script>
@@ -204,6 +203,26 @@
       </script>
       <button type="button" name="button2" onclick="divisiblePor()">Divisible por 2, 3, 5 y 7</button><br>
       <h2>Escribir un programa que escriba en pantalla los divisores de un número dado (usando funciones).</h2>
+      <p id="ejercicio13">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function divisores(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+
+        var cad="Divisible entre ";
+        var resto=0;
+        for(var i=1;i<numero1;i++){
+          resto=numero1%i;
+          (resto==0)?cad=cad +i:"";
+         if(resto==0 && i>1){
+           cad=cad+",";
+         }
+
+      }
+        document.getElementById("ejercicio13").innerHTML =cad;
+
+      }
+      </script>
+      <button type="button" name="button2" onclick="divisores()">Divisible por 2, 3, 5 y 7</button><br>
       <h2>Escribe un programa para que oculte y muestre el contenido de un &lt;div&gt;.</h2>
       <h2>Codificar un programa que genere dinámicamente una tabla HTML y la muestre en un &lt;div&gt;.</h2>
       <h2>Escribe un programa que recoja un valor desde un formulario (usando un campo de texto &lt;dinput type=”text”&gt;) y lo muestre en un &lt;div&gt;.</h2>
