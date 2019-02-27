@@ -2,14 +2,25 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Ejercicio JavaScript</title>
+    <title>Servicios y Aplicaciones Telem&aacute;ticas - Ejercicio JavaScript</title>
     <style media="screen">
 
+html{
+  background: lightgrey;
+}
     body {
       counter-reset: section;
+      background: black;
+      color: white;
+      margin: 0px auto;
+      padding: 10px;
+      width: 800px;
+      height: auto;
+      font-family: verdana;
     }
 
     h1 {
+      font-size: 1.5em;
       counter-reset: subsection;
     }
 
@@ -19,8 +30,13 @@
     }
 
     h2{
+      font-size: 1.2em;
+
+    }
+    h3{
       font-size: 1.1em;
-      color:blue;
+      color: lightgrey;
+
     }
 
     h2::before {
@@ -53,6 +69,13 @@ li ol li{
     }
 
 
+h2+p{
+  padding-left: 10px;
+  margin-left: 20px;
+}
+p p{
+  position: inherit;
+}
     </style>
   </head>
   <body>
@@ -61,8 +84,8 @@ li ol li{
 
     <script type="text/javascript">
       function myAlert(message){
-        //window.alert(message);
-        document.getElementById("demo").innerHTML = message;
+
+        window.alert(message);
       }
       //var origin = document.getElementById('demo');
       var newdest= origin;
@@ -79,40 +102,51 @@ li ol li{
       }
     </script>
     <ol>
-      <li>uno
-      <ol>
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-      </ol></li>
+      <li>Uno
+        <ol>
+          <li>Sub elemento 1</li>
+          <li>Sub elemento 1</li>
+          <li>Sub elemento 1</li>
+        </ol>
+      </li>
     </ol>
     <h1>JavaScript</h1>
-<h2>Escribe un programa para que aparezca una ventana emergente (alert) con el mensaje: “Saludos, alumnado de segundo”.</h2>
-
+    <h2>Escribe un programa para que aparezca una ventana emergente (alert) con el mensaje: “Saludos, alumnado de segundo”.</h2>
+    <h3> Una forma: formulario y en onClick</h3>
     <form name="alertform"> Introduce tu nombre:
       <input type="button" value= "alarma"
      onClick="window.alert('Saludos, alumnado de segundo');">
 
      </form>
-     <form name="alertform2"> Introduce tu nombre:
-       <input type="text" name="yourtext" id="name2">
-
-        <input type="button"
-        value= "Actualiza"
-        onClick="myAlert(document.getElementById(yourtext).value')">
-      </form>
-
-
-<h2>Escribe un programa para que aparezca en el navegador el mensaje: “Saludos, alumnado de segundo”.</h2>
-
+     <h3> Otra forma: funci&oacute;n en &lt;button&gt;</h3>
+     <button type="button" name="alarma" onClick="myAlert('Saludos, alumnado de segundo')">Alarma</button>
+     <h2>Escribe un programa para que aparezca en el navegador el mensaje: “Saludos, alumnado de segundo”.</h2>
       <p>
         <script>
         ejercicio2();
         </script>
       </p>
-      3. Escribe un programa que escriba en la pantalla el resultado de sumar 4 + 1.
-      4. Escribe un programa que pida el nombre del usuario con un prompt y escriba un texto que diga “Hola” más el nombreUsuario”. Ayuda para recibir datos de un usuario utilizando el objeto prompt:
-      var nombreUsuario=prompt(“Introduce nombre”);
+      <h2>Escribe un programa que escriba en la pantalla el resultado de sumar 4 + 1.</h2>
+      <p>
+        <script>
+        var num1=4+1;
+        document.write('Sumando 4 + 1 ='+num1);
+        </script>
+      </p>
+      <h2>Escribe un programa que pida el nombre del usuario con un prompt y escriba un texto que diga “Hola” más el nombreUsuario”. Ayuda para recibir datos de un usuario utilizando el objeto prompt:
+      var nombreUsuario=prompt(“Introduce nombre”);</h2>
+      <p id="ejercicio4">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function pide(){
+        var nombreUsuario=prompt('Introduce nombre');
+        document.getElementById("ejercicio4").innerHTML=nombreUsuario;
+
+      }
+
+
+      </script>
+      <button type="button" name="button" onclick="pide()">Dale</button><br>
+
       5. Escribe un programa que pida dos números y escriba el resultado de sumar estos dos números.
       6. Escribe un programa que pida dos números y escriba en la pantalla cual es el mayor.
       7. Escribe un programa que pida 3 números y escriba en la pantalla el mayor de los tres (usa funciones).
