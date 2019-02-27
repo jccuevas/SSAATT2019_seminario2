@@ -5,6 +5,11 @@
     <title>Servicios y Aplicaciones Telem&aacute;ticas - Ejercicio JavaScript</title>
     <style media="screen">
 
+:root{
+--standard_margin: 5px;
+--standard_margin_big: 20px;
+}
+
 html{
   background: lightgrey;
 }
@@ -20,7 +25,9 @@ html{
     }
 
     h1 {
+      padding: 2px;
       font-size: 1.5em;
+      background-color: darkgrey;
       counter-reset: subsection;
     }
 
@@ -49,7 +56,7 @@ html{
 
     li ol{
       counter-reset: sublista1;
-      padding-left: 5px;
+      padding-left: var(--standard_margin);
     }
 
     li::before {
@@ -57,18 +64,42 @@ html{
       content: "Elemento " counter(lista) ". ";
     }
 
-li ol li{
-  margin-left: 5px;
-  padding-left: 5px;
-  list-style: none;
-}
+    ol.biblio {
+      list-style: none;
+      counter-reset: biblio;
+    }
+
+    li.biblio {
+      margin-left: 0px;
+      margin-bottom: var(--standard_margin_big);
+      padding: 0px;
+    }
+
+    li.biblio::before {
+      counter-increment: biblio;
+      content: "[" counter(biblio) "] ";
+
+    }
+
+    li ol li{
+      margin-left: var(--standard_margin);
+      padding-left: var(--standard_margin);
+      list-style: none;
+    }
 
     li ol li::before {
       counter-increment: sublista1;
       content: counter(lista) "." counter(sublista1) " ";
     }
 
+h2 a{
+  text-decoration: none;
+  color: inherit;
+}
+h2 a:hover{
 
+  color: red;
+}
 h2+p{
   padding-left: 10px;
   margin-left: 20px;
@@ -142,14 +173,56 @@ p p{
         document.getElementById("ejercicio4").innerHTML=nombreUsuario;
 
       }
-
-
       </script>
-      <button type="button" name="button" onclick="pide()">Dale</button><br>
+      <button type="button" name="button" onclick="pide()">Pulse aqu&iacute;</button><br>
 
       <h2>Escribe un programa que pida dos números y escriba el resultado de sumar estos dos números.</h2>
+      <p id="ejercicio5">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function suma(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+        var numero2=Number(prompt('Introduce un número','0'));
+        var suma= numero1+numero2;
+        document.getElementById("ejercicio5").innerHTML="Suma de " + numero1 + "+" + numero2 + "=" + suma;
+      }
+      </script>
+      <button type="button" name="button" onclick="suma()">Sumar dos n&uacute;meros</button><br>
+
       <h2>Escribe un programa que pida dos números y escriba en la pantalla cual es el mayor.</h2>
+      <p id="ejercicio6">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function compara2(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+        var numero2=parseInt(prompt('Introduce un número','0'));
+
+        if(numero1!=numero2){
+          document.getElementById("ejercicio6").innerHTML= numero1 + ((numero1>numero2)?' es mayor que ':' es menor que ') + numero2;
+        }else {
+          document.getElementById("ejercicio6").innerHTML= "Son iguales";
+        }
+      }
+      </script>
+      <button type="button" name="button2" onclick="compara2()">Compara dos n&uacute;meros</button><br>
       <h2>Escribe un programa que pida 3 números y escriba en la pantalla el mayor de los tres (usa funciones).</h2>
+      <p id="ejercicio7">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function mayorde3(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+        var numero2=parseInt(prompt('Introduce un número','0'));
+        var numero3=parseInt(prompt('Introduce un número','0'));
+
+        if(numero1 > numero2 && numero1 > numero3){
+          document.getElementById("ejercicio7").innerHTML = numero1 + ' es el mayor';
+        }else if(numero2 > numero1 && numero2 > numero3){
+          document.getElementById("ejercicio7").innerHTML = numero2 + ' es el mayor';
+        }else if(numero3 > numero1 && numero3 > numero2){
+          document.getElementById("ejercicio7").innerHTML = numero3 + ' es el mayor';
+        } else {
+          document.getElementById("ejercicio7").innerHTML = ' No hay ninguno mayor que los demás';
+        }
+      }
+      </script>
+      <button type="button" name="button2" onclick="mayorde3()">El mayor de tre n&uacute;meros</button><br>
       <h2>Escribe un programa que pida un número y diga si es par (usa funciones).</h2>
       <h2>Escribe un programa que pida una frase y escriba cuantas veces aparece la letra n (usa funciones).</h2>
       <h2>Escribe un programa que pida una frase y escriba las vocales que aparecen (usa funciones).</h2>
@@ -159,6 +232,23 @@ p p{
       <h2>Escribe un programa para que oculte y muestre el contenido de un &lt;div&gt;.</h2>
       <h2>Codificar un programa que genere dinámicamente una tabla HTML y la muestre en un &lt;div&gt;.</h2>
       <h2>Escribe un programa que recoja un valor desde un formulario (usando un campo de texto &lt;dinput type=”text”&gt;) y lo muestre en un &lt;div&gt;.</h2>
+      <h2>Escribe un programa que llame al servicio situado en la dirección: <a href="https://ssaatt.com/whatsat/contactos/jemunoz" target="_blank">https://ssaatt.com/whatsat/contactos/jemunoz</a>. Muestra la respuesta en un &lt;div&gt;.</h2>
+      <h2>Escribe un programa que extraiga la información que devuelve el servicio del ejercicio 17 y lo muestre en una tabla.</h2>
 
+    <h1>Ejercicio de evaluación</h1>
+    <h2>Existe un servicio en la dirección <a href="https://ssaatt.com/whatsat/tutorias" target="_blank">https://ssaatt.com/whatsat/tutorias</a> que devuelve el horario de tutorías de los profesores del departamento. Se pide:</h2>
+<p>
+        <ul>
+          <li>Visualizar un horario en una página web que muestre la tutoría del profesor “jemunoz”.</li>
+          <li>La figura 1 puede usarse como ejemplo a la hora de presentar el calendario. Para realizar este ejercicio, utilizar todo lo aprendido en los seminarios de generación de contenidos y CSS.</li>
+        </ul>
+      </p>
+      <h3>Bibligraf&iacute;a</h3>
+      <p>
+        <ol class="biblio">
+          <li class="biblio">“JavaScript: the definitive guide”. Flanagan, David, 2010. Recurso disponible en: http://avalos.ujaen.es/record=b2157992</li>
+          <li class="biblio">“JavaScript Absolute Beginner's Guide”. Chinnathambi, Kirupa. Recurso disponible en: https://0-proquestcombo.safaribooksonline.com.avalos.ujaen.es/9780134498638</li>
+        </ol>
+      </p>
   </body>
 </html>
