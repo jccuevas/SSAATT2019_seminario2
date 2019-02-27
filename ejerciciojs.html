@@ -292,6 +292,21 @@ p p{
       </script>
       <button type="button" name="button2" onclick="divisible()">Divisible por 2, 3, 5 o 7</button><br>
       <h2>Añadir al ejercicio anterior que nos diga por cuál de los cuatro es divisible (hay que decir todos por los que es divisible). A la hora de codificar el programa, utiliza funciones.</h2>
+      <p id="ejercicio12">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function divisiblePor(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+
+        var cad="Divisible entre ";
+        (numero1%2==0)?cad=cad +"2 ":"";
+        (numero1%3==0)?cad=cad + "3 ":"";
+        (numero1%5==0)?cad=cad + "5 ":"";
+        (numero1%7==0)?cad=cad + "7 ":"";
+        document.getElementById("ejercicio12").innerHTML =cad;
+
+      }
+      </script>
+      <button type="button" name="button2" onclick="divisiblePor()">Divisible por 2, 3, 5 y 7</button><br>
       <h2>Escribir un programa que escriba en pantalla los divisores de un número dado (usando funciones).</h2>
       <h2>Escribe un programa para que oculte y muestre el contenido de un &lt;div&gt;.</h2>
       <h2>Codificar un programa que genere dinámicamente una tabla HTML y la muestre en un &lt;div&gt;.</h2>
