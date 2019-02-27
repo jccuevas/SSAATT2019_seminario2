@@ -7,7 +7,7 @@
 
 :root{
 --standard_margin: 5px;
---standard_margin_big: 20px;
+--standard_margin_big: 50px;
 }
 
 html{
@@ -33,7 +33,7 @@ html{
 
     h1::before {
       counter-increment: section;
-      content: "Ejercicio " counter(section) ". ";
+      content: "Tema " counter(section) ". ";
     }
 
     h2{
@@ -48,7 +48,7 @@ html{
 
     h2::before {
       counter-increment: subsection;
-      content: counter(section) "." counter(subsection) " ";
+      content: counter(section) "-" counter(subsection) " ";
     }
     ol {
       counter-reset: lista;
@@ -101,6 +101,7 @@ h2 a:hover{
   color: red;
 }
 h2+p{
+  color:red;
   padding-left: 10px;
   margin-left: 20px;
 }
