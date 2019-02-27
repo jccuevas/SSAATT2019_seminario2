@@ -218,12 +218,27 @@ p p{
         }else if(numero3 > numero1 && numero3 > numero2){
           document.getElementById("ejercicio7").innerHTML = numero3 + ' es el mayor';
         } else {
-          document.getElementById("ejercicio7").innerHTML = ' No hay ninguno mayor que los demás';
+          document.getElementById("ejercicio7").innerHTML = 'Todos son iguales';
         }
       }
       </script>
       <button type="button" name="button2" onclick="mayorde3()">El mayor de tre n&uacute;meros</button><br>
       <h2>Escribe un programa que pida un número y diga si es par (usa funciones).</h2>
+      <p id="ejercicio8">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function esPar(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+
+if(!isNaN(numero1)){
+        document.getElementById("ejercicio8").innerHTML = ((numero1%2)==0)?'Es par':'Es impar';
+      }
+      else {
+        alert("No ha indroducido un número");
+      }
+
+      }
+      </script>
+      <button type="button" name="button2" onclick="esPar()">¿Es par?</button><br>
       <h2>Escribe un programa que pida una frase y escriba cuantas veces aparece la letra n (usa funciones).</h2>
       <h2>Escribe un programa que pida una frase y escriba las vocales que aparecen (usa funciones).</h2>
       <h2>Escribe un programa que pida un número y nos diga si es divisible por 2, 3, 5 o 7 (sólo hay que comprobar si lo es por uno de los cuatro). A la hora de codificar el programa, utiliza funciones.</h2>
