@@ -3,6 +3,57 @@
   <head>
     <meta charset="utf-8">
     <title>Ejercicio JavaScript</title>
+    <style media="screen">
+
+    body {
+      counter-reset: section;
+    }
+
+    h1 {
+      counter-reset: subsection;
+    }
+
+    h1::before {
+      counter-increment: section;
+      content: "Ejercicio " counter(section) ". ";
+    }
+
+    h2{
+      font-size: 1.1em;
+      color:blue;
+    }
+
+    h2::before {
+      counter-increment: subsection;
+      content: counter(section) "." counter(subsection) " ";
+    }
+    ol {
+      counter-reset: lista;
+    }
+
+    li ol{
+      counter-reset: sublista1;
+      padding-left: 5px;
+    }
+
+    li::before {
+      counter-increment: lista;
+      content: "Elemento " counter(lista) ". ";
+    }
+
+li ol li{
+  margin-left: 5px;
+  padding-left: 5px;
+  list-style: none;
+}
+
+    li ol li::before {
+      counter-increment: sublista1;
+      content: counter(lista) "." counter(sublista1) " ";
+    }
+
+
+    </style>
   </head>
   <body>
     <script src="ejercicio.js" type="text/javascript">
@@ -11,25 +62,69 @@
     <script type="text/javascript">
       function myAlert(message){
         //window.alert(message);
-        document.getElementById("demo").innerHTML = "My First JavaScript";
+        document.getElementById("demo").innerHTML = message;
+      }
+      //var origin = document.getElementById('demo');
+      var newdest= origin;
+      function scolling(){
+        var origin = document.getElementById('demo')
+        window.scrollTo(0,origin.offsetTop );
+
+        newdest=origin.next()
+
+      }
+
+      function ejercicio2(){
+        document.write("Saludos, alumnado de segundo");
       }
     </script>
-    <h1>Ejercicios JavaScript</h1>
+    <ol>
+      <li>uno
+      <ol>
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+      </ol></li>
+    </ol>
+    <h1>JavaScript</h1>
+<h2>Escribe un programa para que aparezca una ventana emergente (alert) con el mensaje: “Saludos, alumnado de segundo”.</h2>
 
-    <h2>1. Escribe un programa para que aparezca una ventana emergente (alert) con el mensaje: “Saludos, alumnado de segundo”.</h2>
     <form name="alertform"> Introduce tu nombre:
-      <input type="text" name="yourname" id="name">
-      <input type="button" value= "directo"
-     onClick="window.alert('Saludos, alumnado de segundo: ' + document.getElementById('name').value);">
+      <input type="button" value= "alarma"
+     onClick="window.alert('Saludos, alumnado de segundo');">
 
      </form>
      <form name="alertform2"> Introduce tu nombre:
-       <input type="text" name="yourname" id="name2">
+       <input type="text" name="yourtext" id="name2">
 
         <input type="button"
-        value= "fun"
-        onClick="myAlert()">
+        value= "Actualiza"
+        onClick="myAlert(document.getElementById(yourtext).value')">
       </form>
-     <p id="demo"></p>
+
+
+<h2>Escribe un programa para que aparezca en el navegador el mensaje: “Saludos, alumnado de segundo”.</h2>
+
+      <p>
+        <script>
+        ejercicio2();
+        </script>
+      </p>
+      3. Escribe un programa que escriba en la pantalla el resultado de sumar 4 + 1.
+      4. Escribe un programa que pida el nombre del usuario con un prompt y escriba un texto que diga “Hola” más el nombreUsuario”. Ayuda para recibir datos de un usuario utilizando el objeto prompt:
+      var nombreUsuario=prompt(“Introduce nombre”);
+      5. Escribe un programa que pida dos números y escriba el resultado de sumar estos dos números.
+      6. Escribe un programa que pida dos números y escriba en la pantalla cual es el mayor.
+      7. Escribe un programa que pida 3 números y escriba en la pantalla el mayor de los tres (usa funciones).
+      8. Escribe un programa que pida un número y diga si es par (usa funciones).
+      9. Escribe un programa que pida una frase y escriba cuantas veces aparece la letra n (usa funciones).
+      10. Escribe un programa que pida una frase y escriba las vocales que aparecen (usa funciones).
+      11. Escribe un programa que pida un número y nos diga si es divisible por 2, 3, 5 o 7 (sólo hay que comprobar si lo es por uno de los cuatro). A la hora de codificar el programa, utiliza funciones.
+      12. Añadir al ejercicio anterior que nos diga por cuál de los cuatro es divisible (hay que decir todos por los que es divisible). A la hora de codificar el programa, utiliza funciones.
+      13. Escribir un programa que escriba en pantalla los divisores de un número dado (usando funciones).
+      14. Escribe un programa para que oculte y muestre el contenido de un <div>.
+      15. Codificar un programa que genere dinámicamente una tabla HTML y la muestre en un <div>.
+    16. Escribe un programa que recoja un valor desde un formulario (usando un campo de texto <input type=”text” >) y lo muestre en un <div>.
+
   </body>
 </html>
