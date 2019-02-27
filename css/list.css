@@ -102,4 +102,20 @@ h2+p{
 p p{
   position: inherit;
 }
-    </style>
+
+table, th, td{
+  border: 2px solid red;
+  border-collapse: collapse;
+  text-align: center;
+
+
+}
+
+td{
+  padding: 2px;
+}
+
+th{
+  font-style: bold;
+  background-color: green;
+}
