@@ -229,19 +229,68 @@ p p{
       function esPar(){
         var numero1=parseInt(prompt('Introduce un número','0'));
 
-if(!isNaN(numero1)){
-        document.getElementById("ejercicio8").innerHTML = ((numero1%2)==0)?'Es par':'Es impar';
-      }
-      else {
-        alert("No ha indroducido un número");
-      }
-
+        if(!isNaN(numero1)){
+          document.getElementById("ejercicio8").innerHTML = ((numero1%2)==0)?'Es par':'Es impar';
+        }
+        else {
+          alert("No ha indroducido un número");
+        }
       }
       </script>
       <button type="button" name="button2" onclick="esPar()">¿Es par?</button><br>
       <h2>Escribe un programa que pida una frase y escriba cuantas veces aparece la letra n (usa funciones).</h2>
+      <p id="ejercicio9">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function cuentaN(){
+        var frase=prompt('Frase...','Hola no digo nada');
+        var offset=0;
+        var found=0;
+        var pos=0;
+
+        while((pos=frase.indexOf('n',offset))!=-1){
+          found++;
+          offset=pos+1;
+        }
+        document.getElementById("ejercicio9").innerHTML = (found==0)?'No se han encontrado \"n\"':'Se han encontrado '+found+" \"n\"";
+
+      }
+      </script>
+      <button type="button" name="button2" onclick="cuentaN()">Cuenta las 'n' en una frase</button><br>
       <h2>Escribe un programa que pida una frase y escriba las vocales que aparecen (usa funciones).</h2>
+      <p id="ejercicio10">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function cuentaVocales(){
+        var frase=prompt('Frase...','Hola no digo nada');
+        var found=0;
+        var pos=0;
+
+        console.log("Procesando: "+frase);
+
+        while((pos=frase.search(/[aeiou]/i))!=-1){
+          console.log("Posición ="+pos);
+          found++;
+          frase=frase.substr(pos+1);
+        }
+        document.getElementById("ejercicio10").innerHTML = (found==0)?'No se han encontrado vocales':'Se han encontrado '+found+" vocales";
+
+      }
+      </script>
+      <button type="button" name="button2" onclick="cuentaVocales()">Cuenta las vocales en una frase</button><br>
       <h2>Escribe un programa que pida un número y nos diga si es divisible por 2, 3, 5 o 7 (sólo hay que comprobar si lo es por uno de los cuatro). A la hora de codificar el programa, utiliza funciones.</h2>
+      <p id="ejercicio11">Aquí aparecer&aacute; el resultado</p>
+      <script>
+      function divisible(){
+        var numero1=parseInt(prompt('Introduce un número','0'));
+
+        (numero1%2==0)?document.getElementById("ejercicio11").innerHTML = "Divisible entre 2":
+        (numero1%3==0)?document.getElementById("ejercicio11").innerHTML = "Divisible entre 3":
+        (numero1%5==0)?document.getElementById("ejercicio11").innerHTML = "Divisible entre 5":
+        (numero1%7==0)?document.getElementById("ejercicio11").innerHTML = "Divisible entre 7":
+        document.getElementById("ejercicio11").innerHTML ="No es divisible entre ningundo";
+
+      }
+      </script>
+      <button type="button" name="button2" onclick="divisible()">Divisible por 2, 3, 5 o 7</button><br>
       <h2>Añadir al ejercicio anterior que nos diga por cuál de los cuatro es divisible (hay que decir todos por los que es divisible). A la hora de codificar el programa, utiliza funciones.</h2>
       <h2>Escribir un programa que escriba en pantalla los divisores de un número dado (usando funciones).</h2>
       <h2>Escribe un programa para que oculte y muestre el contenido de un &lt;div&gt;.</h2>
