@@ -356,7 +356,6 @@
           if(this.readyState == 4 && this.status == "200"){
 
             //var test='[{"profesor":"jemunoz","tutorias":[{"martes":"10:30-13:30"},{"miercoles":"11:30-12:30"},{"jueves":"16:30-18:30"}]}]';
-
             var jsonTut = JSON.parse(this.responseText);
             var jsonTut = JSON.parse(test);
             var profesor = jsonTut[0].profesor;
@@ -376,6 +375,7 @@
 
                 var celda=document.getElementById(tag1);
                 celda.style.background="red";
+
                 if(diff>=2){//Hay más de una hora seguida
                   celda.rowSpan=diff;
                   celda.innerHTML="Tutoría";
@@ -386,11 +386,8 @@
                     var cell=document.getElementById(tag);
                     cell.parentNode.removeChild(cell);
                   }
-
-
                 } else{
                   celda.innerHTML="Tutoría";
-
                 }
 
 
