@@ -217,7 +217,7 @@
       </script>
       <button type="button" name="button2" onclick="divisores()">Divisores</button><br>
       <h2>Escribe un programa para que oculte y muestre el contenido de un &lt;div&gt;.</h2>
-      <div style="visibility: visible;background-color:blue;padding:var(--standard_margin_big);" id="panel"></div>
+      <div id="panel" style="visibility: visible;background-color:blue;padding:var(--standard_margin_big);" ></div>
       <script>
       var panel = document.getElementById("panel");
 
@@ -236,7 +236,7 @@
 
       <button id="buttonHide" type="button" onclick="ocultar()">Ocultar</button><br>
       <h2>Codificar un programa que genere dinámicamente una tabla HTML y la muestre en un &lt;div&gt;.</h2>
-      <div style="overflow: auto;visibility: visible;background-color:blue;padding:var(--standard_margin_big);" id="tabla"></div>
+      <div id="tabla" style="overflow: auto;visibility: visible;background-color:blue;padding:var(--standard_margin_big);"></div>
       <script>
       var panel = document.getElementById("tabla");
 
@@ -256,7 +256,7 @@
       }
       </script>
 
-      <button id="buttonHide" type="button" onclick="tabla()">Generar tabla</button><br>
+      <button id="buttonTabla" type="button" onclick="tabla()">Generar tabla</button><br>
       <h2>Escribe un programa que recoja un valor desde un formulario (usando un campo de texto &lt;dinput type=”text”&gt;) y lo muestre en un &lt;div&gt;.</h2>
       <div id="divtexto" style="overflow: auto;visibility: visible;background-color:blue;padding:var(--standard_margin_big);"></div>
       <script>
@@ -277,6 +277,7 @@
 
         <button type="submit" onclick="texto(document.getElementById('textarea').value)">Enviar</button>
       </form>
+
       <h2>Escribe un programa que llame al servicio situado en la dirección: <a href="https://ssaatt.com/whatsat/contactos/jemunoz" target="_blank">https://ssaatt.com/whatsat/contactos/jemunoz</a>. Muestra la respuesta en un &lt;div&gt;.</h2>
       <div id="divHTTP" style="max-height: 200px;width: auto;overflow: auto;visibility: visible;background-color:blue;padding:var(--standard_margin_big);"></div>
 
@@ -303,6 +304,13 @@
 
         var xhttp2 = new XMLHttpRequest();
         xhttp2.onreadystatechange = function() {
+          /*
+          0: request not initialized
+          1: server connection established
+          2: request received
+          3: processing request
+          4: request finished and response is ready
+          */
           if (this.readyState == 4 && this.status == 200) {
       // Typical action to be perform2ed when the document is ready:
           var data = JSON.parse(this.responseText);
@@ -336,12 +344,108 @@
 
     <h1>Ejercicio de evaluación</h1>
     <h2>Existe un servicio en la dirección <a href="https://ssaatt.com/whatsat/tutorias" target="_blank">https://ssaatt.com/whatsat/tutorias</a> que devuelve el horario de tutorías de los profesores del departamento. Se pide:</h2>
-<p>
+    <p>
         <ul>
           <li>Visualizar un horario en una página web que muestre la tutoría del profesor “jemunoz”.</li>
           <li>La figura 1 puede usarse como ejemplo a la hora de presentar el calendario. Para realizar este ejercicio, utilizar todo lo aprendido en los seminarios de generación de contenidos y CSS.</li>
         </ul>
       </p>
+      <script type="text/javascript">
+        var timetable = new XMLHttpRequest();
+        timetable.onreadystatechange=function(){
+          if(this.readyState == 4 && this.status == "200"){
+
+
+            var jsonTut = JSON.parse(this.responseText);
+            var profesor = jsonTut[0].profesor;
+            var arrayTut= jsonTut[0]["tutorias"];
+
+            var output="";
+            var timetableText=jsonTut[0]["tutorias"];
+            for(h in timetableText){
+              for(x in timetableText[h]){
+
+                var hour=timetableText[h][x];
+                var parts= hour.split("-");
+                var tag1=x+"-"+parts[0];
+                var tag1Hour=parseInt(parts[0].split(":")[0]);
+                var tag2=x+"-"+parts[1];
+                var tag2Hour=parseInt(parts[1].split(":")[0]);
+                for(var i=tag1Hour;i<tag2Hour;i++){
+                  tag=x+"-"+i+":"+parts[0].split(":")[1];
+                  console.log("Etiqueta horario: "+tag);
+                  document.getElementById(tag).innerHTML="Tutoría";
+                }
+
+                //document.getElementById(tag1).innerHTML="Tutoría "+tag1Hour+" "+tag2Hour;
+              }
+            }
+            document.getElementById("ejercicio_eval").innerHTML="Profesor: "+profesor;
+            document.getElementById("ejercicio_eval_json").innerHTML=this.responseText;
+
+          } else if(this.readyState == 4 && this.status != "200"){
+            document.getElementById("div_tutorias").innerHTML="<p>Error en la petición</p>";
+          }
+
+        }
+
+      function loadTimeTable(){
+        timetable.open("GET","https://ssaatt.com/whatsat/tutorias",true);
+        timetable.send();
+
+      }
+      </script>
+      <button id="buttonTimetable" type="button" onclick="loadTimeTable()">Cargar tutoría</button><br>
+      <p id="ejercicio_eval_json">Aquí aparecer&aacute; el JSON</p>
+      <p id="ejercicio_eval">Aquí aparecer&aacute; el profesor</p>
+      <div id="div_tutorias">
+
+
+        <table id="table_tutorias">
+          <tr>
+          <th>Horario</th><th>Lunes</th><th>Martes</th><th>Mi&eacute;rcoles</th><th>Jueves</th><th>Viernes</th>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="8:30">8:30-9:30</td><td id="lunes-8:30"></td><td id="martes-8:30"></td><td id="miercoles-8:30"></td><td id="jueves-8:30"></td><td id="viernes-8:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="9:30">9:30-10:30</td><td id="lunes-9:30"></td><td id="martes-9:30"></td><td id="miercoles-9:30"></td><td id="jueves-9:30"></td><td id="viernes-9:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="10:30">11:30-12:30</td><td id="lunes-10:30"></td><td id="martes-10:30"></td><td id="miercoles-10:30"></td><td id="jueves-10:30"></td><td id="viernes-10:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="11:30">11:30-12:30</td><td id="lunes-11:30"></td><td id="martes-11:30"></td><td id="miercoles-11:30"></td><td id="jueves-11:30"></td><td id="viernes-11:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="12:30">12:30-13:30</td><td id="lunes-12:30"></td><td id="martes-12:30"></td><td id="miercoles-12:30"></td><td id="jueves-12:30"></td><td id="viernes-12:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="13:30">13:30-14:30</td><td id="lunes-13:30"></td><td id="martes-13:30"></td><td id="miercoles-13:30"></td><td id="jueves-13:30"></td><td id="viernes-13:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="14:30">14:30-15:30</td><td id="lunes-14:30"></td><td id="martes-14:30"></td><td id="miercoles-14:30"></td><td id="jueves-14:30"></td><td id="viernes-14:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="15:30">15:30-16:30</td><td id="lunes-15:30"></td><td id="martes-15:30"></td><td id="miercoles-15:30"></td><td id="jueves-15:30"></td><td id="viernes-15:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="16:30">16:30-17:30</td><td id="lunes-16:30"></td><td id="martes-8:30"></td><td id="miercoles-16:30"></td><td id="jueves-16:30"></td><td id="viernes-16:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="17:30">17:30-18:30</td><td id="lunes-17:30"></td><td id="martes-8:30"></td><td id="miercoles-17:30"></td><td id="jueves-17:30"></td><td id="viernes-17:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="18:30">18:30-19:30</td><td id="lunes-18:30"></td><td id="martes-8:30"></td><td id="miercoles-18:30"></td><td id="jueves-18:30"></td><td id="viernes-18:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="19:30">19:30-20:30</td><td id="lunes-19:30"></td><td id="martes-19:30"></td><td id="miercoles-19:30"></td><td id="jueves-19:30"></td><td id="viernes-19:30"></td>
+          </tr>
+          <tr>
+            <td class="column_timetable" id="20:30">20:30-21:30</td><td id="lunes-20:30"></td><td id="martes-20:30"></td><td id="miercoles-20:30"></td><td id="jueves-20:30"></td><td id="viernes-20:30"></td>
+          </tr>
+        </table>
+      </div>
       <h3>Bibligraf&iacute;a</h3>
       <p>
         <ol class="biblio">

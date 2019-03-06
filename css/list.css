@@ -119,3 +119,32 @@ th{
   font-style: bold;
   background-color: green;
 }
+
+#div_tutorias{
+  padding: 5px;
+}
+
+#table_tutorias{
+  border: 2px solid green;
+  border-collapse: collapse;
+  text-align: center;
+  margin: 5px auto;
+}
+
+#table_tutorias th{
+  border: 2px solid blue;
+  background-color: blue;
+}
+
+#table_tutorias td{
+  min-width: 100px;
+  border: 2px solid blue;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td.column_timetable{
+
+  color: black;
+  background-color: white;
+}
