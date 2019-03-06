@@ -148,3 +148,7 @@ td.column_timetable{
   color: black;
   background-color: white;
 }
+
+td.tutoria{
+  background-color: red;
+}

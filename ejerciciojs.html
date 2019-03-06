@@ -355,8 +355,10 @@
         timetable.onreadystatechange=function(){
           if(this.readyState == 4 && this.status == "200"){
 
+            //var test='[{"profesor":"jemunoz","tutorias":[{"martes":"10:30-13:30"},{"miercoles":"11:30-12:30"},{"jueves":"16:30-18:30"}]}]';
 
             var jsonTut = JSON.parse(this.responseText);
+            var jsonTut = JSON.parse(test);
             var profesor = jsonTut[0].profesor;
             var arrayTut= jsonTut[0]["tutorias"];
 
@@ -364,20 +366,34 @@
             var timetableText=jsonTut[0]["tutorias"];
             for(h in timetableText){
               for(x in timetableText[h]){
-
                 var hour=timetableText[h][x];
                 var parts= hour.split("-");
                 var tag1=x+"-"+parts[0];
                 var tag1Hour=parseInt(parts[0].split(":")[0]);
                 var tag2=x+"-"+parts[1];
                 var tag2Hour=parseInt(parts[1].split(":")[0]);
-                for(var i=tag1Hour;i<tag2Hour;i++){
-                  tag=x+"-"+i+":"+parts[0].split(":")[1];
-                  console.log("Etiqueta horario: "+tag);
-                  document.getElementById(tag).innerHTML="Tutoría";
+                var diff=tag2Hour-tag1Hour;
+
+                var celda=document.getElementById(tag1);
+                celda.style.background="red";
+                if(diff>=2){//Hay más de una hora seguida
+                  celda.rowSpan=diff;
+                  celda.innerHTML="Tutoría";
+
+                  for(var i=tag1Hour+1;i<tag2Hour;i++){
+                    tag=x+"-"+i+":"+parts[0].split(":")[1];
+                    console.log("Etiqueta horario: "+tag);
+                    var cell=document.getElementById(tag);
+                    cell.parentNode.removeChild(cell);
+                  }
+
+
+                } else{
+                  celda.innerHTML="Tutoría";
+
                 }
 
-                //document.getElementById(tag1).innerHTML="Tutoría "+tag1Hour+" "+tag2Hour;
+
               }
             }
             document.getElementById("ejercicio_eval").innerHTML="Profesor: "+profesor;
